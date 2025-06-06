@@ -1,6 +1,4 @@
-﻿// Plik: MainForm.cs
 
-// --- Upewnij się, że masz wszystkie potrzebne usingi na górze ---
 using BeerCollection.Forms;
 using BeerCollection.Models;
 using Microsoft.EntityFrameworkCore;
@@ -18,18 +16,14 @@ namespace BeerCollection.Forms
             InitializeComponent();
         }
 
-        // --- ZDARZENIE URUCHAMIANE PRZY STARCIE FORMULARZA ---
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Tutaj powinna być Twoja logika do automatycznego tworzenia bazy danych, jeśli jej nie ma
-            // SprawdzIStworzBazeJesliPotrzeba(); // Zakładam, że ta logika już działa
-
-            // Ładujemy dane po raz pierwszy i ustawiamy wygląd tabeli
+            
             ZaladujPiwaDoTabeli();
             dataGridViewPiwa.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
-        // --- GŁÓWNA METODA DO ŁADOWANIA I FILTROWANIA DANYCH ---
+       
         public void ZaladujPiwaDoTabeli(string frazaWyszukiwania = null)
         {
             try
@@ -93,7 +87,7 @@ namespace BeerCollection.Forms
             }
         }
 
-        // --- OBSŁUGA PRZYCISKÓW DO WYSZUKIWANIA ---
+   
         private void btnWyszukaj_Click(object sender, EventArgs e)
         {
             ZaladujPiwaDoTabeli(textBoxWyszukaj.Text);
@@ -105,14 +99,13 @@ namespace BeerCollection.Forms
             ZaladujPiwaDoTabeli();
         }
 
-        // --- OBSŁUGA PRZYCISKÓW DO ZARZĄDZANIA PIWAMI I BROWARAMI ---
+       
         private void btnZarzadzajBrowarami_Click(object sender, EventArgs e)
         {
             using (FormBrowary formBrowary = new FormBrowary())
             {
                 formBrowary.ShowDialog(this);
-                // Po zamknięciu okna zarządzania browarami, odświeżamy listę,
-                // bo nazwa browaru mogła się zmienić
+               
                 ZaladujPiwaDoTabeli(textBoxWyszukaj.Text);
             }
         }
@@ -224,7 +217,7 @@ namespace BeerCollection.Forms
             }
         }
 
-        // --- OBSŁUGA WYŚWIETLANIA RECENZJI ---
+        
         private void dataGridViewPiwa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -234,8 +227,7 @@ namespace BeerCollection.Forms
                 {
                     formRecenzje.ShowDialog(this);
                 }
-                // Po zamknięciu okna recenzji nie musimy odświeżać listy piw,
-                // chyba że dodalibyśmy tam funkcję, która wpływa na piwa.
+                
             }
         }
     }
