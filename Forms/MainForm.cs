@@ -58,7 +58,7 @@ namespace BeerCollection.Forms
 
                     dataGridViewPiwa.DataSource = piwaDoWyswietlenia;
 
-                    // Dostosowanie nagłówków i wyglądu kolumn
+                  
                     if (dataGridViewPiwa.Columns["Id"] != null)
                         dataGridViewPiwa.Columns["Id"].Visible = false;
                     if (dataGridViewPiwa.Columns["NazwaPiwa"] != null)
