@@ -1,0 +1,32 @@
+# Domyślne pliki Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Foldery generowane podczas kompilacji
+obj/
+bin/
+
+# Pliki generowane przez różne narzędzia
+_ReSharper.*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Folder ustawień Visual Studio
+.vs/
+
+# Pliki tymczasowe
+*.tmp
+*.bak
+*.cache
+
+# --- Pliki specyficzne dla Twojego projektu ---
+
+# Plik bazy danych SQLite - NIGDY nie dodawaj go do repozytorium!
+# Baza danych powinna być tworzona przez aplikację za pomocą skryptu SQL.
+*.db
+*.db-journal
+
+# Jeśli masz inne pliki tymczasowe lub logi, dodaj je tutaj
+logs/
