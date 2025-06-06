@@ -1,9 +1,9 @@
-﻿// Na górze pliku FormEdytorBrowaru.cs
-using BeerCollection.Models; // Upewnij się, że to poprawna przestrzeń nazw
+﻿
+using BeerCollection.Models; 
 using System;
 using System.Windows.Forms;
 
-namespace BeerCollection.Forms // Upewnij się, że to poprawna przestrzeń nazw
+namespace BeerCollection.Forms 
 {
     public partial class FormEdytorBrowaru : Form
     {
