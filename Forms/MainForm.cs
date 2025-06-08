@@ -1,4 +1,4 @@
-﻿// Plik: MainForm.cs
+
 using BeerCollection.Forms;
 using BeerCollection.Models;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +19,12 @@ namespace BeerCollection.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+          
             ZaladujPiwaDoTabeli();
             dataGridViewPiwa.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
-
+      
         public void ZaladujPiwaDoTabeli(string frazaWyszukiwania = null)
         {
             try
@@ -59,8 +59,7 @@ namespace BeerCollection.Forms
 
                     dataGridViewPiwa.DataSource = piwaDoWyswietlenia;
 
-
-                    if (dataGridViewPiwa.Columns["Id"] != null)
+                               if (dataGridViewPiwa.Columns["Id"] != null)
                         dataGridViewPiwa.Columns["Id"].Visible = false;
                     if (dataGridViewPiwa.Columns["NazwaPiwa"] != null)
                         dataGridViewPiwa.Columns["NazwaPiwa"].HeaderText = "Nazwa Piwa";
@@ -100,12 +99,13 @@ namespace BeerCollection.Forms
             ZaladujPiwaDoTabeli();
         }
 
+
         private void btnZarzadzajBrowarami_Click(object sender, EventArgs e)
         {
             using (FormBrowary formBrowary = new FormBrowary())
             {
                 formBrowary.ShowDialog(this);
-
+           
                 ZaladujPiwaDoTabeli(textBoxWyszukaj.Text);
             }
         }
@@ -258,18 +258,8 @@ namespace BeerCollection.Forms
                 {
                     formRecenzje.ShowDialog(this);
                 }
-
+          
             }
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void searchFlowPanel_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

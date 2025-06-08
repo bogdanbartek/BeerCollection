@@ -159,7 +159,7 @@ namespace BeerCollection.Forms
             searchFlowPanel.Name = "searchFlowPanel";
             searchFlowPanel.Size = new Size(958, 31);
             searchFlowPanel.TabIndex = 0;
-            searchFlowPanel.Paint += searchFlowPanel_Paint;
+           
             // 
             // buttonsFlowPanel
             // 

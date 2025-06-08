@@ -1,4 +1,3 @@
-﻿
 using BeerCollection.Models; 
 using System;
 using System.Windows.Forms;
