@@ -17,17 +17,17 @@ namespace BeerCollection.Forms
             InitializeComponent();
         }
 
-       
+
         private void ZaladujBrowary()
         {
             try
             {
                 using (var context = new BeerContext())
                 {
-                  
+
                     var browary = context.Breweries.ToList();
 
-                 
+
                     dataGridViewBrowary.DataSource = browary;
 
                     if (dataGridViewBrowary.Columns["Name"] != null)
@@ -37,11 +37,11 @@ namespace BeerCollection.Forms
                     if (dataGridViewBrowary.Columns["City"] != null)
                         dataGridViewBrowary.Columns["City"].HeaderText = "Miasto";
 
-                   
+
                     if (dataGridViewBrowary.Columns["Id"] != null)
                         dataGridViewBrowary.Columns["Id"].Visible = false;
 
-                   
+
                     if (dataGridViewBrowary.Columns["Beers"] != null)
                         dataGridViewBrowary.Columns["Beers"].Visible = false;
                 }
@@ -52,13 +52,13 @@ namespace BeerCollection.Forms
             }
         }
 
-      
+
         private void FormBrowary_Load(object sender, EventArgs e)
         {
             ZaladujBrowary();
         }
 
-        
+
         private void btnOdswiez_Click(object sender, EventArgs e)
         {
             ZaladujBrowary();
@@ -67,25 +67,25 @@ namespace BeerCollection.Forms
 
         private void btnDodajBrowar_Click(object sender, EventArgs e)
         {
-           
+
             using (FormEdytorBrowaru formEdytor = new FormEdytorBrowaru())
             {
-                
+
                 if (formEdytor.ShowDialog() == DialogResult.OK)
                 {
-                   
+
                     Brewery nowyBrowar = formEdytor.EdytowanyBrowar;
 
                     try
                     {
-                       
+
                         using (var context = new BeerContext())
                         {
-                            context.Breweries.Add(nowyBrowar); 
-                            context.SaveChanges();           
+                            context.Breweries.Add(nowyBrowar);
+                            context.SaveChanges();
                         }
 
-                       
+
                         ZaladujBrowary();
                         MessageBox.Show("Nowy browar został pomyślnie dodany!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -94,37 +94,37 @@ namespace BeerCollection.Forms
                         MessageBox.Show($"Wystąpił błąd podczas dodawania nowego browaru: {ex.ToString()}", "Błąd Zapisu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                
+
             }
         }
 
-        
+
         private void btnEdytujBrowar_Click(object sender, EventArgs e)
         {
-           
+
             if (dataGridViewBrowary.CurrentRow != null)
             {
-             
+
                 Brewery zaznaczonyBrowar = dataGridViewBrowary.CurrentRow.DataBoundItem as Brewery;
 
                 if (zaznaczonyBrowar != null)
                 {
-                    
+
                     using (FormEdytorBrowaru formEdytor = new FormEdytorBrowaru(zaznaczonyBrowar))
                     {
                         if (formEdytor.ShowDialog() == DialogResult.OK)
                         {
-                           
+
 
                             try
                             {
-                                using (var context = new BeerContext()) 
+                                using (var context = new BeerContext())
                                 {
-                                   
+
                                     context.Breweries.Update(zaznaczonyBrowar);
-                                    context.SaveChanges();                    
+                                    context.SaveChanges();
                                 }
-                                ZaladujBrowary(); 
+                                ZaladujBrowary();
                                 MessageBox.Show("Dane browaru zostały zaktualizowane!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             catch (Exception ex)
@@ -147,15 +147,15 @@ namespace BeerCollection.Forms
 
         private void btnUsunBrowar_Click(object sender, EventArgs e)
         {
-           
+
             if (dataGridViewBrowary.CurrentRow != null)
             {
-              
+
                 Brewery zaznaczonyBrowar = dataGridViewBrowary.CurrentRow.DataBoundItem as Brewery;
 
                 if (zaznaczonyBrowar != null)
                 {
-                   
+
                     DialogResult potwierdzenie = MessageBox.Show(
                         $"Czy na pewno chcesz usunąć browar: {zaznaczonyBrowar.Name}?",
                         "Potwierdź Usunięcie",
@@ -164,17 +164,17 @@ namespace BeerCollection.Forms
 
                     if (potwierdzenie == DialogResult.Yes)
                     {
-                       
+
                         try
                         {
-                            using (var context = new BeerContext()) 
+                            using (var context = new BeerContext())
                             {
-                              
+
                                 var browarDoUsuniecia = context.Breweries.Find(zaznaczonyBrowar.Id);
                                 if (browarDoUsuniecia != null)
                                 {
                                     context.Breweries.Remove(browarDoUsuniecia);
-                                    context.SaveChanges(); 
+                                    context.SaveChanges();
 
                                     MessageBox.Show("Browar został pomyślnie usunięty.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     ZaladujBrowary();
@@ -186,10 +186,10 @@ namespace BeerCollection.Forms
                                 }
                             }
                         }
-                       
-                        catch (Microsoft.EntityFrameworkCore.DbUpdateException dbEx) 
+
+                        catch (Microsoft.EntityFrameworkCore.DbUpdateException dbEx)
                         {
-                          
+
                             if (dbEx.InnerException is Microsoft.Data.Sqlite.SqliteException sqliteEx && sqliteEx.SqliteErrorCode == 19)
                             {
                                 MessageBox.Show(
@@ -201,13 +201,13 @@ namespace BeerCollection.Forms
                             }
                             else
                             {
-                               
+
                                 MessageBox.Show($"Wystąpił błąd podczas operacji na bazie danych: {dbEx.Message}\n" +
                                                 $"Szczegóły: {(dbEx.InnerException != null ? dbEx.InnerException.Message : "brak dodatkowych szczegółów")}",
                                                 "Błąd Bazy Danych", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
-                        catch (Exception ex) 
+                        catch (Exception ex)
                         {
                             MessageBox.Show($"Wystąpił nieoczekiwany błąd podczas usuwania browaru: {ex.ToString()}", "Błąd Krytyczny", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -222,6 +222,11 @@ namespace BeerCollection.Forms
             {
                 MessageBox.Show("Proszę najpierw zaznaczyć browar z listy do usunięcia.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void mainTableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

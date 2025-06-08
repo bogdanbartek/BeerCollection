@@ -20,7 +20,7 @@ namespace BeerCollection.Forms
             ZaladujBrowaryDoComboBoxa();
         }
 
-     
+
         public FormEdytorPiwa(Beer piwoDoEdycji)
         {
             InitializeComponent();
@@ -105,6 +105,11 @@ namespace BeerCollection.Forms
         }
 
         private void FormEdytorPiwa_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNazwaPiwa_TextChanged(object sender, EventArgs e)
         {
 
         }

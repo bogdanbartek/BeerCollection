@@ -1,16 +1,12 @@
-﻿namespace BeerCollection.Forms
+﻿// Plik: FormEdytorBrowaru.Designer.cs
+// Wersja przerobiona, z poprawnymi nazwami kontrolek i lepszym układem
+
+namespace BeerCollection.Forms
 {
     partial class FormEdytorBrowaru
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,119 +18,146 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            btnZapisz = new Button();
-            btnAnuluj = new Button();
-            textBoxNazwaBrowaru = new TextBox();
-            textBoxKrajBrowaru = new TextBox();
-            textBoxMiastoBrowaru = new TextBox();
-            SuspendLayout();
+            this.labelNazwa = new System.Windows.Forms.Label();
+            this.textBoxNazwaBrowaru = new System.Windows.Forms.TextBox();
+            this.labelKraj = new System.Windows.Forms.Label();
+            this.textBoxKrajBrowaru = new System.Windows.Forms.TextBox();
+            this.labelMiasto = new System.Windows.Forms.Label();
+            this.textBoxMiastoBrowaru = new System.Windows.Forms.TextBox();
+            this.btnZapiszBrowar = new System.Windows.Forms.Button();
+            this.btnAnulujBrowar = new System.Windows.Forms.Button();
+            this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.mainTableLayoutPanel.SuspendLayout();
+            this.buttonsFlowPanel.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // label1
+            // mainTableLayoutPanel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(32, 195);
-            label1.Name = "label1";
-            label1.Size = new Size(89, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Nazwa browaru";
+            this.mainTableLayoutPanel.ColumnCount = 2;
+            this.mainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.mainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainTableLayoutPanel.Controls.Add(this.labelNazwa, 0, 0);
+            this.mainTableLayoutPanel.Controls.Add(this.textBoxNazwaBrowaru, 1, 0);
+            this.mainTableLayoutPanel.Controls.Add(this.labelKraj, 0, 1);
+            this.mainTableLayoutPanel.Controls.Add(this.textBoxKrajBrowaru, 1, 1);
+            this.mainTableLayoutPanel.Controls.Add(this.labelMiasto, 0, 2);
+            this.mainTableLayoutPanel.Controls.Add(this.textBoxMiastoBrowaru, 1, 2);
+            this.mainTableLayoutPanel.Controls.Add(this.buttonsFlowPanel, 1, 3);
+            this.mainTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainTableLayoutPanel.Name = "mainTableLayoutPanel";
+            this.mainTableLayoutPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.mainTableLayoutPanel.RowCount = 4;
+            this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.mainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.mainTableLayoutPanel.Size = new System.Drawing.Size(434, 161);
+            this.mainTableLayoutPanel.TabIndex = 0;
             // 
-            // label2
+            // labelNazwa
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(32, 238);
-            label2.Name = "label2";
-            label2.Size = new Size(27, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Kraj";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(32, 280);
-            label3.Name = "label3";
-            label3.Size = new Size(43, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Miasto";
-            // 
-            // btnZapisz
-            // 
-            btnZapisz.Location = new Point(475, 368);
-            btnZapisz.Name = "btnZapisz";
-            btnZapisz.Size = new Size(81, 32);
-            btnZapisz.TabIndex = 3;
-            btnZapisz.Text = "Zapisz";
-            btnZapisz.UseVisualStyleBackColor = true;
-            btnZapisz.Click += btnZapisz_Click;
-            // 
-            // btnAnuluj
-            // 
-            btnAnuluj.Location = new Point(583, 368);
-            btnAnuluj.Name = "btnAnuluj";
-            btnAnuluj.Size = new Size(81, 32);
-            btnAnuluj.TabIndex = 4;
-            btnAnuluj.Text = "Anuluj";
-            btnAnuluj.UseVisualStyleBackColor = true;
-            btnAnuluj.Click += btnAnuluj_Click;
+            this.labelNazwa.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelNazwa.AutoSize = true;
+            this.labelNazwa.Location = new System.Drawing.Point(13, 17);
+            this.labelNazwa.Name = "labelNazwa";
+            this.labelNazwa.Text = "Nazwa browaru:";
             // 
             // textBoxNazwaBrowaru
             // 
-            textBoxNazwaBrowaru.Location = new Point(149, 189);
-            textBoxNazwaBrowaru.Name = "textBoxNazwaBrowaru";
-            textBoxNazwaBrowaru.Size = new Size(250, 23);
-            textBoxNazwaBrowaru.TabIndex = 5;
+            this.textBoxNazwaBrowaru.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxNazwaBrowaru.Location = new System.Drawing.Point(110, 13);
+            this.textBoxNazwaBrowaru.Name = "textBoxNazwaBrowaru";
+            this.textBoxNazwaBrowaru.Size = new System.Drawing.Size(311, 23);
+            // 
+            // labelKraj
+            // 
+            this.labelKraj.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelKraj.AutoSize = true;
+            this.labelKraj.Location = new System.Drawing.Point(13, 47);
+            this.labelKraj.Name = "labelKraj";
+            this.labelKraj.Text = "Kraj:";
             // 
             // textBoxKrajBrowaru
             // 
-            textBoxKrajBrowaru.Location = new Point(149, 235);
-            textBoxKrajBrowaru.Name = "textBoxKrajBrowaru";
-            textBoxKrajBrowaru.Size = new Size(250, 23);
-            textBoxKrajBrowaru.TabIndex = 6;
+            this.textBoxKrajBrowaru.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxKrajBrowaru.Location = new System.Drawing.Point(110, 43);
+            this.textBoxKrajBrowaru.Name = "textBoxKrajBrowaru";
+            this.textBoxKrajBrowaru.Size = new System.Drawing.Size(311, 23);
+            // 
+            // labelMiasto
+            // 
+            this.labelMiasto.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelMiasto.AutoSize = true;
+            this.labelMiasto.Location = new System.Drawing.Point(13, 77);
+            this.labelMiasto.Name = "labelMiasto";
+            this.labelMiasto.Text = "Miasto:";
             // 
             // textBoxMiastoBrowaru
             // 
-            textBoxMiastoBrowaru.Location = new Point(149, 277);
-            textBoxMiastoBrowaru.Name = "textBoxMiastoBrowaru";
-            textBoxMiastoBrowaru.Size = new Size(250, 23);
-            textBoxMiastoBrowaru.TabIndex = 7;
+            this.textBoxMiastoBrowaru.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxMiastoBrowaru.Location = new System.Drawing.Point(110, 73);
+            this.textBoxMiastoBrowaru.Name = "textBoxMiastoBrowaru";
+            this.textBoxMiastoBrowaru.Size = new System.Drawing.Size(311, 23);
+            // 
+            // buttonsFlowPanel
+            // 
+            this.buttonsFlowPanel.Controls.Add(this.btnAnulujBrowar);
+            this.buttonsFlowPanel.Controls.Add(this.btnZapiszBrowar);
+            this.buttonsFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.buttonsFlowPanel.Location = new System.Drawing.Point(110, 103);
+            this.buttonsFlowPanel.Name = "buttonsFlowPanel";
+            this.buttonsFlowPanel.Size = new System.Drawing.Size(311, 39);
+            // 
+            // btnZapiszBrowar
+            // 
+            this.btnZapiszBrowar.Name = "btnZapiszBrowar";
+            this.btnZapiszBrowar.Size = new System.Drawing.Size(90, 30);
+            this.btnZapiszBrowar.Text = "Zapisz";
+            this.btnZapiszBrowar.UseVisualStyleBackColor = true;
+            this.btnZapiszBrowar.Click += new System.EventHandler(this.btnZapisz_Click);
+            // 
+            // btnAnulujBrowar
+            // 
+            this.btnAnulujBrowar.Name = "btnAnulujBrowar";
+            this.btnAnulujBrowar.Size = new System.Drawing.Size(90, 30);
+            this.btnAnulujBrowar.Text = "Anuluj";
+            this.btnAnulujBrowar.UseVisualStyleBackColor = true;
+            this.btnAnulujBrowar.Click += new System.EventHandler(this.btnAnuluj_Click);
             // 
             // FormEdytorBrowaru
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(textBoxMiastoBrowaru);
-            Controls.Add(textBoxKrajBrowaru);
-            Controls.Add(textBoxNazwaBrowaru);
-            Controls.Add(btnAnuluj);
-            Controls.Add(btnZapisz);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "FormEdytorBrowaru";
-            Text = "Dodaj/Edytuj Browar";
-            Load += FormEdytorBrowaru_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AcceptButton = this.btnZapiszBrowar;
+            this.CancelButton = this.btnAnulujBrowar;
+            this.ClientSize = new System.Drawing.Size(434, 161);
+            this.Controls.Add(this.mainTableLayoutPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Name = "FormEdytorBrowaru";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Dodaj/Edytuj Browar";
+            this.Load += new System.EventHandler(this.FormEdytorBrowaru_Load);
+            this.mainTableLayoutPanel.ResumeLayout(false);
+            this.mainTableLayoutPanel.PerformLayout();
+            this.buttonsFlowPanel.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Button btnZapisz;
-        private Button btnAnuluj;
-        private TextBox textBoxNazwaBrowaru;
-        private TextBox textBoxKrajBrowaru;
-        private TextBox textBoxMiastoBrowaru;
+        // Deklaracje pól dla kontrolek z poprawnymi nazwami
+        private System.Windows.Forms.Label labelNazwa;
+        private System.Windows.Forms.TextBox textBoxNazwaBrowaru;
+        private System.Windows.Forms.Label labelKraj;
+        private System.Windows.Forms.TextBox textBoxKrajBrowaru;
+        private System.Windows.Forms.Label labelMiasto;
+        private System.Windows.Forms.TextBox textBoxMiastoBrowaru;
+        private System.Windows.Forms.Button btnZapiszBrowar;
+        private System.Windows.Forms.Button btnAnulujBrowar;
+        private System.Windows.Forms.TableLayoutPanel mainTableLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel buttonsFlowPanel;
     }
 }

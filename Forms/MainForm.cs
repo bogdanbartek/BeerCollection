@@ -1,9 +1,8 @@
 ﻿// Plik: MainForm.cs
-
-// --- Upewnij się, że masz wszystkie potrzebne usingi na górze ---
 using BeerCollection.Forms;
 using BeerCollection.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Data;
 using System.Linq;
@@ -18,18 +17,14 @@ namespace BeerCollection.Forms
             InitializeComponent();
         }
 
-        // --- ZDARZENIE URUCHAMIANE PRZY STARCIE FORMULARZA ---
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Tutaj powinna być Twoja logika do automatycznego tworzenia bazy danych, jeśli jej nie ma
-            // SprawdzIStworzBazeJesliPotrzeba(); // Zakładam, że ta logika już działa
 
-            // Ładujemy dane po raz pierwszy i ustawiamy wygląd tabeli
             ZaladujPiwaDoTabeli();
             dataGridViewPiwa.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
-        // --- GŁÓWNA METODA DO ŁADOWANIA I FILTROWANIA DANYCH ---
+
         public void ZaladujPiwaDoTabeli(string frazaWyszukiwania = null)
         {
             try
@@ -64,7 +59,7 @@ namespace BeerCollection.Forms
 
                     dataGridViewPiwa.DataSource = piwaDoWyswietlenia;
 
-                    // Dostosowanie nagłówków i wyglądu kolumn
+
                     if (dataGridViewPiwa.Columns["Id"] != null)
                         dataGridViewPiwa.Columns["Id"].Visible = false;
                     if (dataGridViewPiwa.Columns["NazwaPiwa"] != null)
@@ -93,7 +88,7 @@ namespace BeerCollection.Forms
             }
         }
 
-        // --- OBSŁUGA PRZYCISKÓW DO WYSZUKIWANIA ---
+
         private void btnWyszukaj_Click(object sender, EventArgs e)
         {
             ZaladujPiwaDoTabeli(textBoxWyszukaj.Text);
@@ -105,14 +100,12 @@ namespace BeerCollection.Forms
             ZaladujPiwaDoTabeli();
         }
 
-        // --- OBSŁUGA PRZYCISKÓW DO ZARZĄDZANIA PIWAMI I BROWARAMI ---
         private void btnZarzadzajBrowarami_Click(object sender, EventArgs e)
         {
             using (FormBrowary formBrowary = new FormBrowary())
             {
                 formBrowary.ShowDialog(this);
-                // Po zamknięciu okna zarządzania browarami, odświeżamy listę,
-                // bo nazwa browaru mogła się zmienić
+
                 ZaladujPiwaDoTabeli(textBoxWyszukaj.Text);
             }
         }
@@ -147,11 +140,15 @@ namespace BeerCollection.Forms
             if (dataGridViewPiwa.CurrentRow != null)
             {
                 int piwoId = (int)dataGridViewPiwa.CurrentRow.Cells["Id"].Value;
+
+                Beer piwoPoEdycji; 
+
                 try
                 {
                     Beer piwoDoEdycji;
                     using (var context = new BeerContext())
                     {
+
                         piwoDoEdycji = context.Beers.Include(b => b.Brewery).FirstOrDefault(b => b.Id == piwoId);
                     }
 
@@ -161,13 +158,41 @@ namespace BeerCollection.Forms
                         {
                             if (formEdytor.ShowDialog(this) == DialogResult.OK)
                             {
-                                using (var context = new BeerContext())
+                                piwoPoEdycji = formEdytor.EdytowanePiwo;
+
+
+                                try
                                 {
-                                    context.Beers.Update(piwoDoEdycji);
-                                    context.SaveChanges();
+                                    using (var context = new BeerContext())
+                                    {
+
+                                        var piwoWBazie = context.Beers.Find(piwoPoEdycji.Id);
+
+                                        if (piwoWBazie != null)
+                                        {
+
+                                            piwoWBazie.Name = piwoPoEdycji.Name;
+                                            piwoWBazie.BeerType = piwoPoEdycji.BeerType;
+                                            piwoWBazie.AlcoholContent = piwoPoEdycji.AlcoholContent;
+                                            piwoWBazie.Volume = piwoPoEdycji.Volume;
+                                            piwoWBazie.Price = piwoPoEdycji.Price;
+                                            piwoWBazie.Description = piwoPoEdycji.Description;
+
+
+                                            piwoWBazie.BreweryId = piwoPoEdycji.BreweryId;
+
+
+                                            context.SaveChanges();
+                                        }
+                                    }
+                                    ZaladujPiwaDoTabeli(textBoxWyszukaj.Text);
+                                    MessageBox.Show("Dane piwa zostały zaktualizowane!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
-                                ZaladujPiwaDoTabeli(textBoxWyszukaj.Text);
-                                MessageBox.Show("Dane piwa zostały zaktualizowane!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Błąd podczas aktualizacji piwa: {ex.ToString()}", "Błąd zapisu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+
                             }
                         }
                     }
@@ -224,7 +249,6 @@ namespace BeerCollection.Forms
             }
         }
 
-        // --- OBSŁUGA WYŚWIETLANIA RECENZJI ---
         private void dataGridViewPiwa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -234,9 +258,18 @@ namespace BeerCollection.Forms
                 {
                     formRecenzje.ShowDialog(this);
                 }
-                // Po zamknięciu okna recenzji nie musimy odświeżać listy piw,
-                // chyba że dodalibyśmy tam funkcję, która wpływa na piwa.
+
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void searchFlowPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
